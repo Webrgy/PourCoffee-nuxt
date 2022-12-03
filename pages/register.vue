@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { useSeoMeta } from "@unhead/vue";
 import { reactive } from "vue"
 
   const user = reactive({
@@ -19,6 +20,10 @@ import { reactive } from "vue"
     })*/
     // console.log(user.email, config.baseUrl);
   }
+  
+  useHead({
+    title: "Register in PourCoffee now"
+  })
 </script>
 
 <template lang="pug">
