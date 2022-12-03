@@ -1,7 +1,20 @@
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
-    css:["~/assets/css/tailwind.scss"],
+    ssr: true,
+    app: {
+        head: {
+            title: "PourCoffee"
+        }
+    },
+    css:["~/assets/css/tailwind.scss", "~/assets/css/global.scss"],
     modules: [
-        '@nuxtjs/tailwindcss'
-    ]
+        '@nuxtjs/tailwindcss',
+        '@formkit/nuxt'
+    ],
+
+    runtimeConfig: {
+        public: {
+            baseUrl: "http://pourcoffee.herokuapp.com"
+        }
+    },
 })

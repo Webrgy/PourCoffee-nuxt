@@ -1,0 +1,15 @@
+.formkit-input:not([type="submit"]) {
+    @apply input input-primary w-full;
+}
+.formkit-input[type="submit"] {
+    @apply btn btn-primary w-full;
+}
+.formkit-wrapper {
+    @apply my-2
+}
+.formkit-label {
+    @apply font-bold text-primary-content block my-2;
+}
+.formkit-messages {
+    @apply text-error
+}
