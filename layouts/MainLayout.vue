@@ -6,6 +6,6 @@
             // page content
             main.bg-gray-50.w-full.h-screen
                 slot
-            label(for="side-bar")
+            SwapDrawer(class="lg:hidden").absolute.top-2.right-2
         SideBar
 </template>

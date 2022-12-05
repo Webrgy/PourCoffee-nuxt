@@ -5,6 +5,5 @@ definePageMeta({layout: "main-layout"})
 <template lang="pug">
 NuxtLayout
   div
-    NuxtLink(to="/login").btn.btn-primary Log in
-    NuxtLink(to="/register").btn.btn-primary Sign up
+    h1 Hoome
 </template>

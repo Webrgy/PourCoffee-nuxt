@@ -29,7 +29,8 @@ import { reactive } from "vue"
 <template lang="pug">
 .register-page-container.px-2
   .form-control.max-w-xl.mx-auto.w-full.rounded-box.shadow-xl.p-10.mx-5
-    h1.font-bold.text-xl.my-5.text-center(class="md:text-3xl") PourCoffee 
+    h1.text-center
+      HeaderLogo
       br
       |Create Your Account
     span.text-center.text-base already have an account? 

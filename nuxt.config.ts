@@ -9,7 +9,8 @@ export default defineNuxtConfig({
     css:["~/assets/css/tailwind.scss", "~/assets/css/global.scss"],
     modules: [
         '@nuxtjs/tailwindcss',
-        '@formkit/nuxt'
+        '@formkit/nuxt',
+        'unplugin-icons/nuxt'
     ],
 
     runtimeConfig: {
