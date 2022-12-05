@@ -1,5 +1,5 @@
 <template lang="pug">
 div
-  h1.text-xl.text-blue-400 lettssGoo
-  button.btn.btn-primary login
+  NuxtLink(to="/login").btn.btn-primary Log in
+  NuxtLink(to="/register").btn.btn-primary Sign up
 </template>
