@@ -10,23 +10,32 @@ import { reactive } from 'vue';
     password: ""
   })
 
-  const login = async() => {
-    const config = useRuntimeConfig()
-    await useFetch(`${config.baseUrl}/api/login`, {
-      method: "POST",
-      body: {
-        user : user
-      }
-    })
-  }
+  const errorMessage = ref('')
+  const hasLogged = ref()
 
+  const config = useRuntimeConfig()
 
+  const login = async() => await useFetch(`${config.baseUrl}/api/login`, {
+    method: "POST",
+    body: {
+      user : user
+    },
+    onResponse({ response }) {
+      hasLogged.value = response._data.success
+    },
+    onResponseError({ response }) {
+      hasLogged.value = response._data.success
+      errorMessage.value = response._data.errors.base[0]
+    },
+  })
 
 </script>
 
 <template lang="pug">
 .login-page-container.px-2
-  .form-control.max-w-xl.mx-auto.w-full.rounded-box.shadow-xl.p-10.mx-5
+  .w-full.max-w-xl(v-if="hasLogged === false")
+    MainAlert(:message="errorMessage")
+  .form-control.max-w-xl.mx-auto.w-full.rounded-box.shadow-xl.p-10.my-5
     h1.text-center
       HeaderLogo 
       br
@@ -40,6 +49,6 @@ import { reactive } from 'vue';
 
 <style lang="scss">
 .login-page-container {
-  @apply w-full h-full mx-auto flex justify-center items-center;
+  @apply w-full h-full mx-auto flex flex-col justify-center items-center;
 }
 </style>
