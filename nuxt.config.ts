@@ -10,7 +10,10 @@ export default defineNuxtConfig({
     modules: [
         '@nuxtjs/tailwindcss',
         '@formkit/nuxt',
-        'unplugin-icons/nuxt'
+        'unplugin-icons/nuxt',
+        ['@pinia/nuxt', {
+            autoImports: ["defineStore", "acceptHMRUpdate"]
+        }]
     ],
 
     runtimeConfig: {
@@ -18,4 +21,8 @@ export default defineNuxtConfig({
             baseUrl: "https://pourcoffee.up.railway.app"
         }
     },
+
+    imports: {
+        dirs: ["stores"]
+    }
 })

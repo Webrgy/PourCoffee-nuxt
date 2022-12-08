@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import { reactive } from 'vue';
-
   useHead({
     title: "Login to your PourCoffee account"
   })
+
+  const currentUser = useUser()
 
   const user = reactive({
     email: "",
@@ -22,6 +22,11 @@ import { reactive } from 'vue';
     },
     onResponse({ response }) {
       hasLogged.value = response._data.success
+      if(hasLogged) {
+        currentUser.isLoggedIn = true
+        currentUser.token = response._data.token
+        useRouter().push("/")
+      }
     },
     onResponseError({ response }) {
       hasLogged.value = response._data.success
