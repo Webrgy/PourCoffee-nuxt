@@ -1,5 +1,7 @@
 <script setup>
-definePageMeta({layout: "main-layout"})
+definePageMeta({
+  layout: "main-layout"
+})
 
 </script>
 <template lang="pug">

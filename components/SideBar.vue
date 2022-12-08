@@ -6,6 +6,12 @@ import IconHistory from '~icons/ic/baseline-history'
 import IconSettings from "~icons/carbon/settings"
 import IconUser from "~icons/mingcute/user-3-line"
 import IconLogout from "~icons/humbleicons/logout"
+
+const currentUser = useUser()
+const logout = () => {
+    currentUser.isLoggedIn = false
+    useRouter().push("/login")
+}
 </script>
 <template lang="pug">
 .drawer-side
@@ -40,9 +46,9 @@ import IconLogout from "~icons/humbleicons/logout"
                 NuxtLink(to="/settings")
                     IconSettings
                     |Settings
-        .side-bar-acctions
-            li
-                NuxtLink(to="/logout")
+        .side-bar-acctions(v-if="currentUser.isLoggedIn")
+            li(@click="logout")
+                NuxtLink
                     IconLogout
                     |Logout
 </template>
