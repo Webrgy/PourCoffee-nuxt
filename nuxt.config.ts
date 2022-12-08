@@ -15,7 +15,7 @@ export default defineNuxtConfig({
 
     runtimeConfig: {
         public: {
-            baseUrl: "http://pourcoffee.herokuapp.com"
+            baseUrl: "https://pourcoffee.up.railway.app"
         }
     },
 })

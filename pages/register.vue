@@ -13,21 +13,34 @@ import { reactive } from "vue"
     password_confirmation: ""
   })
 
+  const errorMessage = ref('')
+  const hasRegistered = ref()
+
   const signup = async () => {
     const config = useRuntimeConfig()
     await useFetch(`${config.baseUrl}/api/register`, {
       method: "post",
       body: {
         user: user
+      },
+      onResponse({ response }) {
+        hasRegistered.value = response._data.success
+      },
+      onResponseError({ response }) {
+        const errors = response._data.errors
+        hasRegistered.value = response._data.success        
+        errorMessage.value = errors[Object.keys(errors)[0]][0]
       }
-    }).then((res) => {
-      console.log(res);
+    }).catch(error => {
+      console.log(error);
     })
   }
 </script>
 
 <template lang="pug">
 .register-page-container.px-2
+  .w-full.max-w-xl(v-if="hasRegistered === false")
+    MainAlert(:message="errorMessage")
   .form-control.max-w-xl.mx-auto.w-full.rounded-box.shadow-xl.p-10.mx-5
     h1.text-center
       HeaderLogo
@@ -46,6 +59,6 @@ import { reactive } from "vue"
 
 <style lang="scss">
 .register-page-container {
-  @apply w-full h-full mx-auto flex justify-center items-center;
+  @apply w-full h-full mx-auto flex flex-col justify-center items-center;
 }
 </style>
