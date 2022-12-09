@@ -24,6 +24,9 @@
       },
       onResponse({ response }) {
         hasRegistered.value = response._data.success
+        if(hasRegistered) {
+          useRouter().push({name: "login"})
+        }
       },
       onResponseError({ response }) {
         const errors = response._data.errors
