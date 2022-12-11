@@ -3,6 +3,16 @@
     font-family: 'Carme', sans-serif;
 }
 
+html::-webkit-scrollbar, .view::-webkit-scrollbar {
+    display: none;
+}
+  
+  /* Hide scrollbar for IE, Edge and Firefox */
+html, .view {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
 .formkit-input:not([type="submit"]) {
     @apply input input-primary w-full;
 }
