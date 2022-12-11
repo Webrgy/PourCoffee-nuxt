@@ -7,5 +7,5 @@ definePageMeta({
 <template lang="pug">
 NuxtLayout
   div
-    h1 Hoome
+    h1 Hooooooooooooooooooomeeeeeeeeeeeeeeeeeeeeeeeez
 </template>

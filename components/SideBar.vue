@@ -16,11 +16,11 @@ const logout = () => {
 <template lang="pug">
 .drawer-side
     label(for="side-bar" class="drawer-overlay")
-    ul.menu.pl-4.py-5.w-72.bg-white.text-base-content.shadow-xl.flex.flex-col.justify-between
+    ul.menu.pl-4.py-5.w-72.bg-white.text-base-content.shadow-xl.flex.flex-col.justify-cneter
         h1.logo
             .text-center.text-4xl
                 HeaderLogo
-        .side-bar-items.items(class="flex-grow-0")
+        .side-bar-items.items(class="flex-grow-0 mt-10")
             li
                 NuxtLink(to="/")
                     IconProducts
@@ -37,7 +37,7 @@ const logout = () => {
                 NuxtLink(to="/history")
                     IconHistory
                     |History
-        .side-bar-settings.items(class="flex-grow")
+        .side-bar-settings.items(v-if="currentUser.isLoggedIn" class="flex-grow")
             li
                 NuxtLink(to="/profile")
                     IconUser
