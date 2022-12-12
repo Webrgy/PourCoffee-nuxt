@@ -33,8 +33,8 @@
         hasRegistered.value = response._data.success        
         errorMessage.value = errors[Object.keys(errors)[0]][0]
       }
-    }).catch(error => {
-      console.log(error);
+    }).catch(() => {
+      return false
     })
   }
 </script>

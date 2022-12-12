@@ -20,6 +20,8 @@ import IconLogout from "~icons/humbleicons/logout"
             onResponseError() {
                 return false;
             }
+        }).catch(() => {
+            return false
         })
         currentUser.isLoggedIn = false
         localStorage.removeItem("PourCoffeeAuth")

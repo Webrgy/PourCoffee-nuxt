@@ -34,6 +34,8 @@
       hasLogged.value = response._data.success
       errorMessage.value = response._data.errors.base[0]
     },
+  }).catch(() => {
+    return false
   })
 
 </script>
