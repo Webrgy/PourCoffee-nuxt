@@ -16,6 +16,9 @@ import IconLogout from "~icons/humbleicons/logout"
             method: "DELETE",
             headers: {
                 authorization: `Bearer ${currentUser.token}`
+            },
+            onResponseError() {
+                return false;
             }
         })
         currentUser.isLoggedIn = false

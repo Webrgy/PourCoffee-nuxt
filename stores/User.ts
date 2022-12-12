@@ -1,5 +1,5 @@
 const router = useRouter
-const currentUser = typeof window !== 'undefined' ? JSON.parse(localStorage.getItem("PourCoffeeAuth") || '{}') : null
+let currentUser = typeof window !== 'undefined' ? JSON.parse(localStorage.getItem("PourCoffeeAuth") || '{}') : null
 export const useUser = defineStore("user", {
     state: () => {
         return {
@@ -10,7 +10,8 @@ export const useUser = defineStore("user", {
     },
     getters: {},
     actions: {
-        async getCurrentUser() {            
+        async getCurrentUser() {
+            currentUser = JSON.parse(localStorage.getItem("PourCoffeeAuth") || '{}')
             if(Object.keys(currentUser).length !== 0) {
                 console.log(currentUser);
                 this.isLoggedIn = currentUser.isLoggedIn

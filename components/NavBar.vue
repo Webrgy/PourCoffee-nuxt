@@ -3,7 +3,7 @@ import IconSearch from "~icons/uil/search"
 </script>
 <template lang="pug">
 .navbar.w-full.bg-base-100.shadow.border-r.p-2.h-20
-    .form-group.bg-gray-100.rounded-full.w-96.px-4.py-2(class="md:w-40 sm:ml-16 xl:w-96")
+    .form-group.bg-gray-100.rounded-full.w-96.px-4.py-2(class="sm:ml-16 lg:w-96")
         span
             IconSearch 
         input(type="text" class="input bg-transparent search-input w-full" placeholder="Search")
