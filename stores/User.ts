@@ -11,7 +11,7 @@ export const useUser = defineStore("user", {
     getters: {},
     actions: {
         async getCurrentUser() {
-            currentUser = JSON.parse(window.localStorage.getItem("PourCoffeeAuth") || '{}')
+            currentUser = typeof window !== 'undefined' ? JSON.parse(window.localStorage.getItem("PourCoffeeAuth") || '{}') : null
             if(Object.keys(currentUser).length !== 0) {
                 console.log(currentUser);
                 this.isLoggedIn = currentUser.isLoggedIn
