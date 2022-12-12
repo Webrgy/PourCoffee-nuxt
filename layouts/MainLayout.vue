@@ -1,10 +1,5 @@
 <script setup>
 import IconCoffeeCart from "~icons/line-md/buy-me-a-coffee-filled"
-    const getNavBarHeight = computed(() => {
-        document.querySelector(".nav-bar-content")
-    })
-
-    console.log(getNavBarHeight);
 
     const toggleCart = () => {
         const cart = document.querySelector(".shopping-card")
@@ -16,7 +11,7 @@ import IconCoffeeCart from "~icons/line-md/buy-me-a-coffee-filled"
     .side-bar.drawer.drawer-mobile
         input(id="side-bar" type="checkbox" class="drawer-toggle")
         .drawer-content.flex-col.items-center.justify-center
-            main.bg-green-500.w-full.h-full.overflow-y-hidden
+            main.w-full.h-full.overflow-y-hidden
                 // page content
                 .header-bar.w-full
                         .nav-bar-content

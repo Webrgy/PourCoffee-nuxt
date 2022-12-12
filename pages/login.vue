@@ -25,6 +25,8 @@
       if(hasLogged) {
         currentUser.isLoggedIn = true
         currentUser.token = response._data.token
+        localStorage.setItem("PourCoffeeAuth", JSON.stringify(currentUser))
+        currentUser.getCurrentUser()
         useRouter().push("/")
       }
     },

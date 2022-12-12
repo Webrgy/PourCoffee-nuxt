@@ -1,19 +1,20 @@
 <script setup>
-const currentUser = useUser()
+const currentUser =  useUser()
 </script>
 <template lang="pug">
-.avatar-card(v-if="currentUser.isLoggedIn")
-    .avatar
-        .w-12.rounded-full.bg-primary
-            span OL
-    .user-info
-        span.full-name Oussama Louelkadi
-        span.email oussamalkd99@gmail.com
-.auth-actions(v-else)
-    .login
-        NuxtLink(to="/login").btn.btn-primary.rounded-full.w-28 Log in
-    .register
-        NuxtLink(to="/register").btn.btn-accent.rounded-full.w-28 sign up
+.avatar-container.w-full
+    .avatar-card(v-if="currentUser.isLoggedIn")
+        .avatar
+            .w-12.rounded-full.bg-primary
+                span {{currentUser.user.initials}}
+        .user-info
+            span.full-name {{`${currentUser.user.first_name} ${currentUser.user.last_name}`}}
+            span.email {{ currentUser.user.email}}
+    .auth-actions(v-else)
+        .login
+            NuxtLink(to="/login").btn.btn-primary.rounded-full.w-28 Log in
+        .register
+            NuxtLink(to="/register").btn.btn-accent.rounded-full.w-28 sign up
     
 </template>
 <style lang="scss">
