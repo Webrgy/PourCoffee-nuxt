@@ -7,11 +7,21 @@ import IconSettings from "~icons/carbon/settings"
 import IconUser from "~icons/mingcute/user-3-line"
 import IconLogout from "~icons/humbleicons/logout"
 
-const currentUser = useUser()
-const logout = () => {
-    currentUser.isLoggedIn = false
-    useRouter().push("/login")
-}
+    const currentUser = useUser()
+
+    const config = useRuntimeConfig()
+
+    const logout = async () => {
+        await useFetch(`${config.baseUrl}/api/logout`, {
+            method: "DELETE",
+            headers: {
+                authorization: `Bearer ${currentUser.token}`
+            }
+        })
+        currentUser.isLoggedIn = false
+        localStorage.removeItem("PourCoffeeAuth")
+        useRouter().push("/login")
+    }
 </script>
 <template lang="pug">
 .drawer-side

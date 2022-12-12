@@ -2,7 +2,6 @@
 definePageMeta({
   layout: "main-layout"
 })
-
 </script>
 <template lang="pug">
 NuxtLayout
