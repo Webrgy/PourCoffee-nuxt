@@ -3,7 +3,6 @@
     let activeUser = reactive({})
     onMounted(() => {
         activeUser = JSON.parse(localStorage.getItem("PourCoffeeAuth") || "{}")
-        console.log(activeUser);
     })
 </script>
 <template lang="pug">
