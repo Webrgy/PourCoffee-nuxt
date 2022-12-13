@@ -11,7 +11,7 @@
   })
 
   const errorMessage = ref('')
-  const hasLogged = ref(Boolean)
+  let hasLogged = false
 
   const config = useRuntimeConfig()
 
@@ -21,17 +21,16 @@
       user : user
     },
     onResponse({ response }) {
-      hasLogged.value = response._data.success
-      if(hasLogged) {
-        currentUser.isLoggedIn = true
+      hasLogged = response._data.success
+      if(response._data.success) {
+        currentUser.isLoggedIn = response._data.success
         currentUser.token = response._data.token
-        localStorage.setItem("PourCoffeeAuth", JSON.stringify(currentUser))
         currentUser.fetchCurrentUser()
       }
-    },
-    onResponseError({ response }) {
-      hasLogged.value = response._data.success
-      errorMessage.value = response._data.errors.base[0]
+      else {
+        hasLogged = response._data.success
+        errorMessage.value = response._data.errors.base[0]
+      }
     },
   })
 
@@ -45,7 +44,7 @@
 
 <template lang="pug">
 .login-page-container.px-2
-  .w-full.max-w-xl(v-if="hasLogged === false")
+  .w-full.max-w-xl(v-if="errorMessage !==''")
     MainAlert(:message="errorMessage")
   .form-control.max-w-xl.mx-auto.w-full.rounded-box.shadow-xl.p-10.my-5
     h1.text-center

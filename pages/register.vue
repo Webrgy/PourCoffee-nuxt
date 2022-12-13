@@ -13,7 +13,7 @@
   })
 
   const errorMessage = ref('')
-  const hasRegistered = ref()
+  let hasRegistered = false
 
   const signup = async () => {
     const config = useRuntimeConfig()
@@ -23,15 +23,14 @@
         user: user
       },
       onResponse({ response }) {
-        hasRegistered.value = response._data.success
+        hasRegistered = response._data.success
         if(hasRegistered) {
           useRouter().push({name: "login"})
+        } else {
+          const errors = response._data.errors
+          hasRegistered = response._data.success        
+          errorMessage.value = errors[Object.keys(errors)[0]][0]
         }
-      },
-      onResponseError({ response }) {
-        const errors = response._data.errors
-        hasRegistered.value = response._data.success        
-        errorMessage.value = errors[Object.keys(errors)[0]][0]
       }
     }).catch(() => {
       return false
@@ -41,7 +40,7 @@
 
 <template lang="pug">
 .register-page-container.px-2
-  .w-full.max-w-xl(v-if="hasRegistered === false")
+  .w-full.max-w-xl(v-if="errorMessage !== ''")
     MainAlert(:message="errorMessage")
   .form-control.max-w-xl.mx-auto.w-full.rounded-box.shadow-xl.p-10.mx-5
     h1.text-center

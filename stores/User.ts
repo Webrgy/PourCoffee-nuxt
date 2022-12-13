@@ -25,9 +25,15 @@ export const useUser = defineStore("user", {
                }).then((res: any) => {
                     if(res.success) {
                         this.user = res.user
+                        localStorage.setItem("PourCoffeeAuth", JSON.stringify(
+                            {
+                                isLoggedIn:this.isLoggedIn,
+                                token: this.token,
+                                user: this.user
+                            })
+                        )
                         router().push("/")
                     }
-
                }).catch(() => {
                     return false
                })
