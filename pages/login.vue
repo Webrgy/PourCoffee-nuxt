@@ -25,8 +25,8 @@
       if(hasLogged) {
         currentUser.isLoggedIn = true
         currentUser.token = response._data.token
-        currentUser.fetchCurrentUser()
         localStorage.setItem("PourCoffeeAuth", JSON.stringify(currentUser))
+        currentUser.fetchCurrentUser()
       }
     },
     onResponseError({ response }) {
