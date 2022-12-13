@@ -12,7 +12,6 @@
     if(Object.keys(currentUserSaved).length !== 0) {
       currentUser.isLoggedIn = currentUserSaved.isLoggedIn
       currentUser.token = currentUserSaved.token
-      localStorage.setItem("PourCoffeeAuth", JSON.stringify(currentUser))
       currentUser.fetchCurrentUser()
     } else {
         currentUser.isLoggedIn = false
