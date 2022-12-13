@@ -11,7 +11,7 @@
   })
 
   const errorMessage = ref('')
-  const hasLogged = ref()
+  const hasLogged = ref(Boolean)
 
   const config = useRuntimeConfig()
 
@@ -25,15 +25,20 @@
       if(hasLogged) {
         currentUser.isLoggedIn = true
         currentUser.token = response._data.token
+        currentUser.fetchCurrentUser()
         localStorage.setItem("PourCoffeeAuth", JSON.stringify(currentUser))
-        currentUser.getCurrentUser()
-        useRouter().push("/")
       }
     },
     onResponseError({ response }) {
       hasLogged.value = response._data.success
       errorMessage.value = response._data.errors.base[0]
     },
+  })
+
+  onBeforeMount(() => {
+    if(currentUser.isLoggedIn) {
+      useRouter().push("/")
+    }
   })
 
 </script>

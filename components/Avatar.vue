@@ -1,16 +1,20 @@
 <script setup>
-const currentUser =  useUser()
+    const currentUser = useUser()
+    let activeUser = reactive({})
+    onMounted(() => {
+        activeUser = JSON.parse(localStorage.getItem("PourCoffeeAuth") || "{}")
+    })
 </script>
 <template lang="pug">
 .avatar-container.w-full
-    .avatar-card(v-if="currentUser.isLoggedIn")
+    .avatar-card(v-if="currentUser.isLoggedIn === true")
         .avatar
             .w-12.rounded-full.bg-primary
                 span {{currentUser.user.initials}}
         .user-info
             span.full-name {{`${currentUser.user.first_name} ${currentUser.user.last_name}`}}
             span.email {{ currentUser.user.email}}
-    .auth-actions(v-else)
+    .auth-actions(v-if="currentUser.isLoggedIn === false")
         .login
             NuxtLink(to="/login").btn.btn-primary.rounded-full.w-28 Log in
         .register
