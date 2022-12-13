@@ -5,6 +5,8 @@ import IconCoffeeCart from "~icons/line-md/buy-me-a-coffee-filled"
         const cart = document.querySelector(".shopping-card")
         cart.classList.toggle("cart-avtive")
     }
+
+    const currentUser = useUser()
 </script>
 <template lang="pug">
 .app-layout.w-full.h-screen
